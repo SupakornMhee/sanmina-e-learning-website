@@ -1,0 +1,18 @@
+วิธีการเข้าใช้งานเว็บ
+
+1. กดคลิกขวาที่ไฟล์ไหนก็ได้ใน Folder นี้ (เช่น manual.txt เป็นต้น) แล้วกดไปที่ "Open In Terminal" (จากหน้า Files)
+จะขึ้นเป็น Terminal เป็น Path ของ Folder "Sanmina E-Learning"
+
+[C:\Sanmina E-Learning>]
+
+2. พิมพ์ข้อความว่า "node app.js" ต่อท้าย แล้วกด enter
+
+[C:\Sanmina E-Learning> node app.js]
+
+จะขึ้นข้อความว่า "App listening on port http://localhost:8080"
+
+3. เข้า url http://localhost:8080 แล้วสามารถใช้งานได้เลย
+
+4. ถ้าต้องการที่จะปิดโปรแกรม ให้กด Ctrl+C ก่อนปิด Command Prompt
+
+

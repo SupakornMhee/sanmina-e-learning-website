@@ -1,0 +1,43 @@
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+
+li {
+    margin: 0.5em auto;
+}
+
+body {
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.lesson-submit {
+    display: block;
+    width: 300px;
+    size: 100px;
+    margin-top: 10px;
+}
+/*
+label {
+    display: block;
+    
+}
+*/
+label, select {
+    margin-bottom: 1em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /*background-color: #2196F3;*/
+    padding: 10px;
+  }
+
+.grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+  }

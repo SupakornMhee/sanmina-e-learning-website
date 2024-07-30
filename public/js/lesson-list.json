@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Serial Communication",
+    "href": "sercom",
+    "available": false
+  },
+  {
+    "name": "RS232 Communication Protocol",
+    "href": "rs232",
+    "available": false
+  },
+  {
+    "name": "RS422 Communication Protocol",
+    "href": "rs422",
+    "available": false
+  },
+  {
+    "name": "RS485 Communication Protocol",
+    "href": "rs485",
+    "available": false
+  },
+  {
+    "name": "Extra Content",
+    "href": "extra",
+    "available": true
+  },
+  {
+    "name": "Credit Content",
+    "href": "credit",
+    "available": false
+  }
+]

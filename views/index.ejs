@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="css/main-page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Welcome to the E-learning Website</h1>
+    <h2>Choose Lessons:</h2>
+    <div class="lesson">
+        <ol id="lesson-list">
+            <% lessonList.forEach(function (item) { %>
+                <% if (item.available) { %>
+                    <li> <a href=<%="display/" +item.href %> target="_blank"><%= item.href %> - <%= item.name %></a></li>
+                <% } else  {%>
+                    <li><%= item.href %> - <%= item.name %> [Unavailable]</li>
+                <% } %>             
+            <% }) %>
+        </ol>
+    </div>
+    <form action="get-admin" method="post">
+        <label for="passwd">Enter Password To Enable Admin Zone:
+            <input id="passwd" name="passwd" type="password" required> </label>
+        <button class="lesson-submit">Submit</button>
+    </form>
+    <div class="admin" <% if (!isAdmin) {%> style="display:none" <%} %>>
+            <h2>Admin Zone Only</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3>Add A Lesson.</h3>
+                    <form action="add-name" method="post">
+                        <label for="lesson-cname">Enter Lesson Code Name (7 character max):
+                            <input id="lesson-cname" name="lesson-cname" type="text" required
+                                style="margin-bottom: 1em;">
+                        </label>
+                        <br>
+                        <label for="lesson-name">Enter Lesson Name:
+                            <input id="lesson-name" name="lesson-name" type="text" required> </label>
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Insert File To A Lesson</h3>
+                    <form action="add-file" method="post" enctype="multipart/form-data">
+                        <label for="choose-lesson-add">Select A Lesson:</label>
+                        <select name="choose-lesson-add">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select> <br>
+                        <label for="chooseFile">Insert File Here (.pdf ONLY)</label>
+                        <input id="chooseFile" name="chooseFile" type="file" value="Choose File">
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Remove File To A Lesson</h3>
+                    <form action="remove-file" method="post">
+                        <label for="choose-lesson-rmv">Select A Lesson:</label>
+                        <select name="choose-lesson-rmv">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select><br>
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Change Lesson Name</h3>
+                    <form action="change-name" method="post">
+                        <label for="choose-lesson-chnme">Select A Lesson:</label>
+                        <select name="choose-lesson-chnme">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select><br>
+                        <label for="change-name">Enter Lesson Name:
+                            <input id="change-name" name="change-name" type="text" required> </label>
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Change Lesson Codename</h3>
+                    <form action="change-href" method="post">
+                        <label for="choose-lesson-chref">Select A Lesson:</label>
+                        <select name="choose-lesson-chref">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select><br>
+                        <label for="change-href">Enter Lesson Codename:
+                            <input id="change-href" name="change-href" type="text" required> </label>
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Delete A Lesson</h3>
+                    <form action="del-name" method="post">
+                        <label for="choose-lesson-del">Select A Lesson:</label>
+                        <select name="choose-lesson-del">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select> <br>
+                        <input type="checkbox" id="del-file" name="del-file" value="1">
+                        <label for="del-file">Delete File of This Lesson (Optional)</label>
+
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Swap Two Lessons</h3>
+                    <form action="swap-lesson" method="post">
+                        <label for="choose-lesson-s1">Select Lesson 1:</label>
+                        <select name="choose-lesson-s1">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select> <br>
+                        <label for="choose-lesson-s2">Select Lesson 2:</label>
+                        <select name="choose-lesson-s2">
+                            <% for (var i=0; i<lessonList.length; i++) {%>
+                                <option value=<%=i %>> <%= i+1 %> - <%= lessonList[i].name %>
+                                </option>
+                                <% }; %>
+                        </select>
+
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <h3>Reset Lesson Files</h3>
+                    <form action="reset-lesson" method="post">
+                        <input type="checkbox" id="reset-files" name="reset-files" value="1">
+                        <label for="reset-files">You've confirmed to reset files. Every lesson will link to an empty pdf
+                            file.</label>
+                        <button class="lesson-submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+</body>
+
+</html>
