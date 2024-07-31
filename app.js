@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 })
     .get('/display/:name', (req, res) => {
         lessoncName = req.params.name;
-        res.sendFile(__dirname + "\\views\\lesson-file\\" + lessoncName + ".pdf");
+        res.sendFile(__dirname + "/views/lesson-file/" + lessoncName + ".pdf");
     })
     .post('/add-name', (req, res) => {
         var lessoncName = req.body["lesson-cname"];
@@ -75,6 +75,7 @@ app.get('/', (req, res) => {
             const cname = req.body["choose-lesson-add"];
             const uploadPath = __dirname
                 + "/views/lesson-file/" + lessonList[cname].href + ".pdf";
+            console.log(uploadPath);
             const uploadedFileExt = path.extname(uploadedFile.name);
             if (uploadedFileExt == '.pdf') {
                 uploadedFile.mv(uploadPath);
