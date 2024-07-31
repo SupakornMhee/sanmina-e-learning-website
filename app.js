@@ -75,7 +75,6 @@ app.get('/', (req, res) => {
             const cname = req.body["choose-lesson-add"];
             const uploadPath = __dirname
                 + "/views/lesson-file/" + lessonList[cname].href + ".pdf";
-            console.log(uploadPath);
             const uploadedFileExt = path.extname(uploadedFile.name);
             if (uploadedFileExt == '.pdf') {
                 uploadedFile.mv(uploadPath);
@@ -127,7 +126,6 @@ app.get('/', (req, res) => {
         if (valid) {
             link1 = __dirname + '/views/lesson-file/' + lessonList[id].href + '.pdf';
             link2 = __dirname + '/views/lesson-file/' + lessoncName + '.pdf';
-            console.log(link1, link2);
             lessonList[id].href = lessoncName;
             if (fs.existsSync(link2)) fs.unlinkSync(link2);
             fs.renameSync(link1, link2);
